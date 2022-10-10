@@ -33,7 +33,6 @@ const EmployeeList = () => {
                                 <td>{emp.email}</td>
                                </tr>
 
-
                             )
 
                         })
