@@ -1,6 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import EmployeeList from './Components/EmployeeList';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         </Typography>
       </Toolbar>
     </AppBar>
+    <EmployeeList/>
   </div>
   );
 }
