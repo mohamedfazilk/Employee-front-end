@@ -13,7 +13,8 @@ function App() {
         </Typography>
       </Toolbar>
     </AppBar>
-    <EmployeeList/>
+    <EmployeeList 
+    />
   </div>
   );
 }
