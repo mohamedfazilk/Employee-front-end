@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { SERVER_URL } from '../Constants.js';
 import { DataGrid } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
+import AddEmployee from './AddEmployee.js';
 
 
 
@@ -34,10 +35,15 @@ const EmployeeList = () => {
     const onDelClick = (url) => {
         if (window.confirm("Are you sure to delete?"))
         fetch(SERVER_URL + 'api/v1/employees/'+url, { method: 'DELETE'}, )
-            .then(res => {
+            .then(response => {
+               if(response.ok){
                 fetchInfo();
                 setOpen(true)
-             
+               }
+
+               else{
+                alert("Something went wrong")
+               }
             }).catch(err => console.log(err))
         }
 
@@ -55,6 +61,26 @@ const EmployeeList = () => {
         }
     ];
 
+    const addEmployee =(employee)=>{
+        fetch(SERVER_URL + 'api/v1/employees',
+        {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(employee)
+        })
+        .then(response=>{
+            if(response.ok){
+                fetchInfo();
+            }
+            else{
+                alert('Something went wrong!');
+
+            }
+        })
+        .catch(err => console.error(err))
+
+    }
+
    
 
 
@@ -63,6 +89,8 @@ const EmployeeList = () => {
 
 
     return (
+        <React.Fragment>
+            <AddEmployee addEmployee={addEmployee}/>
         <div style={{ height: 500, width: '100%' }}>
 
             <DataGrid
@@ -79,6 +107,7 @@ const EmployeeList = () => {
             />
 
         </div>
+        </React.Fragment>
     )
 }
 
